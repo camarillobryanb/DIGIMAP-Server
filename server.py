@@ -1,13 +1,13 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template
 import matplotlib.pyplot as plt
 from colorizers import *
 
 urls = ("/favicon.ico", "dummy")
 app = Flask(__name__)
 
-@app.route('/get', methods = ['GET'])
+@app.route('/', methods = ['GET'])
 def hello():
-    return "Hello World"
+    return "hello"
 
 @app.route('/post', methods = ['POST'])
 def getImage():
