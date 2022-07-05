@@ -8,3 +8,4 @@ numpy
 matplotlib
 argparse
 PILLOW
+gunicorn
