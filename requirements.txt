@@ -1,1 +1,7 @@
 Flask==2.1.2
+torch
+skimage
+numpy
+matplotlib
+argparse
+PIL
