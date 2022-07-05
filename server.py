@@ -5,7 +5,11 @@ from colorizers import *
 urls = ("/favicon.ico", "dummy")
 app = Flask(__name__)
 
-@app.route('/', methods = ['POST'])
+@app.route('/get', methods = ['GET'])
+def hello():
+    return "Hello World"
+
+@app.route('/post', methods = ['POST'])
 def getImage():
     file = request.files['file']
     
