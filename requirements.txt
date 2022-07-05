@@ -3,7 +3,7 @@ torch==1.12.0+cpu
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torchvision==0.13.0+cpu
 Flask==2.1.2
-skimage
+scikit-image
 numpy
 matplotlib
 argparse
