@@ -9,3 +9,4 @@ matplotlib
 argparse
 PILLOW
 gunicorn
+opencv-python
