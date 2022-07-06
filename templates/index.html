@@ -1,5 +1,29 @@
 <html>
+    <title>Image Colorization</title>
+    <head>
+        <style>
+            img {
+                height: 150px;
+                width: 150px;
+            }
+        </style>
+    </head>
     <body>
-        <h1>Hello World</h1>
+        <h1>Image Colorizer</h1>
+        <div class="image">
+            {% if filename %}
+            <image src="{{ url_for('static', filename = '/Images/'+filename)}}" class="img-thumbnail"></image>
+            <image src="{{ url_for('static', filename = '/Output/'+filename)}}" class="img-thumbnail"></image>
+            {% else %}
+            <image src="https://i.ibb.co/mBbvjZN/photo-1588426041836-95baa7321a84.jpg" class="img-thumbnail"></image>
+            <image src="https://i.ibb.co/LrVfXvs/road.jpg" class="img-thumbnail"></image>
+            {% endif %}
+        </div>
+        <form method="post" class="form-inline" action="/" enctype="multipart/form-data">
+            <input type="file" name="file" autocomplete="off" accept="image/png, image/jpeg" required>
+            <p>
+                <input type="submit" value="Upload">
+            </p>
+        </form>
     </body>
 </html>
