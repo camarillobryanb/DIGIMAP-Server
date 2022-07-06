@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
-# from werkzeug.utils import secure_filename
-# import cv2
-# import matplotlib.pyplot as plt
+from werkzeug.utils import secure_filename
+import cv2
+import matplotlib.pyplot as plt
 #from colorizers import *
 
 urls = ("/favicon.ico", "dummy")

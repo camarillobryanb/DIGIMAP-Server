@@ -10,3 +10,4 @@ argparse
 PILLOW
 gunicorn
 opencv-python
+mediapipe
