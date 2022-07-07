@@ -1,29 +1,137 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>Image Colorization</title>
-    <head>
-        <style>
-            img {
-                height: 150px;
-                width: 150px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Image Colorizer</h1>
-        <div class="image">
-            {% if filename %}
-            <image src="{{ url_for('static', filename = '/Images/'+filename)}}" class="img-thumbnail"></image>
-            <image src="{{ url_for('static', filename = '/Output/'+filename)}}" class="img-thumbnail"></image>
-            {% else %}
-            <image src="https://i.ibb.co/mBbvjZN/photo-1588426041836-95baa7321a84.jpg" class="img-thumbnail"></image>
-            <image src="https://i.ibb.co/LrVfXvs/road.jpg" class="img-thumbnail"></image>
-            {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div className="contentWrapper">
+        <!-- Just an image -->
+        <nav class="p-30 navbar navbar-dark bg-dark" id="nav">
+            <a class="p-25 navbar-brand" href="#">
+                <img src="{{ url_for('static', filename = '/images/'+'icon.png')}}"  alt="">
+            </a>
+        </nav>
+
+        <div id="comparison">
+            <figure>
+            <div id="divisor"></div>
+            </figure>
+            <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
         </div>
-        <form method="post" class="form-inline" action="/" enctype="multipart/form-data">
-            <input type="file" name="file" autocomplete="off" accept="image/png, image/jpeg" required>
-            <p>
-                <input type="submit" value="Upload">
+        
+        <div class="heading">
+            <h1 class="headingTitle">Image Colorization</h1>
+            <p class="headingSub">
+            Image Colorization, an algorithm that takes in your
+            black and white photos and returns the colorized version
+            of it. The algorithm uses deep learning to classify
+            objects/regions within the image and color them
+            accordingly.
             </p>
-        </form>
-    </body>
+            <form method="post" class="form-inline image_input" action="/" enctype="multipart/form-data">
+                <input type="file" name="file" autocomplete="off" accept="image/png, image/jpeg" id="image_input"  required>
+                <p>
+                    <input type="submit" value="Upload">
+                </p>
+            </form>
+
+  </div>
+  
+  <section class="Results">
+    <h1 style="font-weight: 600">Results</h1>
+    <div class="resContainer">
+    {% if filename %}
+      <div class="origContainer">
+        <h4>Original</h4>
+        <img
+          style="
+            object-fit: contain;
+            border-radius: 16px;
+            max-width: 600px;
+          "
+          src="{{ url_for('static', filename = '/Images/'+filename)}}" class="img-thumbnail"
+        />
+      </div>
+      <div class="colorContainer">
+        <h4>Colorized</h4>
+        <img
+          style="
+            object-fit: contain;
+            border-radius: 16px;
+            max-width: 600px;
+          "
+          src="{{ url_for('static', filename = '/Output/'+filename)}}" class="img-thumbnail"
+        />
+      </div>
+    {% else %}
+      <div class="origContainer">
+        <h4>Original</h4>
+        <img
+          style="
+            object-fit: contain;
+            border-radius: 16px;
+            max-width: 600px;
+          "
+          src="https://i.ibb.co/mBbvjZN/photo-1588426041836-95baa7321a84.jpg" class="img-thumbnail"
+        />
+      </div>
+      <div class="colorContainer">
+        <h4>Colorized</h4>
+        <img
+          style="
+            object-fit: contain;
+            border-radius: 16px;
+            max-width: 600px;
+          "
+          src="https://i.ibb.co/LrVfXvs/road.jpg" class="img-thumbnail"
+        />
+      </div>
+      {% endif %}
+    </div>
+    <button class="bDownload">
+      <h6 class="dText">Download Image</h6>
+    </button>
+    <button class="bUpload">
+      <h6 class="uText">Upload New Image</h6>
+    </button>
+  </section>
+  
+  <section class="How">
+    <div class="textContain">
+      <h1 style="font-weight: 900">HOW IT WORKS</h1>
+      <p class = "HowText">
+        Given a grayscale photograph as input, this model attacks the problem of hallucinating a plausible 
+        color version of the photograph. The model uses neural networks (unsupervised machine learning, specifically deep learning model) 
+        to turn grayscale images into colorized images with Lab as its color space instead of RGB. 
+        The system is implemented as a feed-forward pass in a CNN at test time and is trained on over a million color images. 
+        Moreover, the model shows that colorization can be a powerful pretext task for self-supervised feature learning, 
+        acting as a cross-channel encoder.This approach results in state-of-the-art performance on several feature learning benchmarks.
+         (Zhang et al. 2016) 
+      </p>
+    </div>
+    <img src="{{ url_for('static', filename = '/images/'+'colorization.png')}}">
+  </section>
+  
+  
+  
+  
+  </div>
+
+
+  <script>
+
+var divisor = document.getElementById("divisor"),
+slider = document.getElementById("slider");
+function moveDivisor() { 
+	divisor.style.width = slider.value+"%";
+}
+  </script>
+
+</body>
+
 </html>
