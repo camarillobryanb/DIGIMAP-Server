@@ -1,4 +1,4 @@
-  div#comparison { 
+  /** div#comparison { 
     width:100%;
     height: 100vh;
     overflow: hidden; }
@@ -40,12 +40,7 @@
   input[type=range]:active { 
     outline: none;  
   }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-
-  input[type=range]::-moz-range-track { 
+   input[type=range]::-moz-range-track { 
     -moz-appearance:none;
       height:15px;
       width: 98%;
@@ -75,7 +70,127 @@
      }
   input[type=range]:focus::-moz-range-thumb {
       background: rgba(255,255,255,0.5);
-     }
+     } 
+
+     **/
+
+     #comparison {
+      width: 100%;
+      height: 900px;
+      overflow: hidden;
+      position: relative;
+    }
+    .iNav{
+      background-color: #1A1A1A;
+    }
+    figure {
+      position: absolute;
+      background-image: url(../static/images/before.png); 
+      background-size: cover;
+      font-size: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+    
+    #divisor {
+      background-image: url(../static/images/after.png);
+      background-size: cover;
+      position: absolute;
+      width: 100%;
+      box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+      bottom: 0;
+      height: 100%;
+    }
+    #divisor::before, #divisor::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      width: 4px;
+      height: calc(50% - 25px);
+      background: white;
+      z-index: 3;
+    }
+    #divisor::before {
+      top: 0;
+      box-shadow: 0 -3px 8px 1px rgba(0, 0, 0, 0.3);
+    }
+    #divisor::after {
+      bottom: 0;
+      box-shadow: 0 3px 8px 1px rgba(0, 0, 0, 0.3);
+    }
+    
+    #handle {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      z-index: 1;
+    }
+    #handle::before, #handle::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border: 6px inset transparent;
+      position: absolute;
+      top: 50%;
+      margin-top: -6px;
+    }
+    #handle::before {
+      border-right: 6px solid white;
+      left: 50%;
+      margin-left: -17px;
+    }
+    #handle::after {
+      border-left: 6px solid white;
+      right: 50%;
+      margin-right: -17px;
+    }
+    
+    input[type=range] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: absolute;
+      top: 50%;
+      left: -25px;
+      transform: translateY(-50%);
+      background-color: transparent;
+      width: calc(100% + 50px);
+      z-index: 2;
+    }
+    input[type=range]:focus, input[type=range]:active {
+      border: none;
+      outline: none;
+    }
+    
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: transparent;
+      border: 4px solid white;
+      box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.3);
+    }
+    
+    input[type=range]::-moz-range-track {
+      -moz-appearance: none;
+      height: 15px;
+      width: 100%;
+      background-color: transparent;
+      position: relative;
+      outline: none;
+    }
+
+    
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+
+
 
   .App {
     text-align: center;
@@ -135,6 +250,37 @@
   font-style: normal;
    
   }
+  
+  .upload_button{
+    content: 'Upload a photo';
+    display: inline-block;
+    background: #EB9222;
+    border-radius: 16px;
+    border-color: #EB9222;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .image_input{
+
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap:12px;
+}
   
   .heading  {
   display: flex;
@@ -358,7 +504,7 @@
     border-radius: 16px;
     border-color: #EB9222;
     border: none;
-    border-radius: 32px;
+    border-radius: 8px;
     padding: 10px 20px;
     outline: none;
     white-space: nowrap;
@@ -382,3 +528,9 @@
     font-weight: 600;
     font-size: 16px;
   }
+
+  
+
+  
+
+  
